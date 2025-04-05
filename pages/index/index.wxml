@@ -1,27 +1,43 @@
-<!--index.wxml-->
-<scroll-view class="scrollarea" scroll-y type="list">
-  <view class="container">
-    <view class="userinfo">
-      <block wx:if="{{canIUseNicknameComp && !hasUserInfo}}">
-        <button class="avatar-wrapper" open-type="chooseAvatar" bind:chooseavatar="onChooseAvatar">
-          <image class="avatar" src="{{userInfo.avatarUrl}}"></image>
-        </button>
-        <view class="nickname-wrapper">
-          <text class="nickname-label">昵称</text>
-          <input type="nickname" class="nickname-input" placeholder="请输入昵称" bind:change="onInputChange" />
-        </view>
-      </block>
-      <block wx:elif="{{!hasUserInfo}}">
-        <button wx:if="{{canIUseGetUserProfile}}" bindtap="getUserProfile"> 获取头像昵称 </button>
-        <view wx:else> 请使用2.10.4及以上版本基础库 </view>
-      </block>
-      <block wx:else>
-        <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-        <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-      </block>
+<view class="container">
+  <view class="header">
+    <text class="title">AI资讯推送助手</text>
+  </view>
+  
+  <view class="stats-panel">
+    <view class="stat-item">
+      <text class="stat-value">{{todayCollected}}</text>
+      <text class="stat-label">今日已采集</text>
     </view>
-    <view class="usermotto">
-      <text class="user-motto">{{motto}}</text>
+    <view class="stat-item">
+      <text class="stat-value">{{pendingPush}}</text>
+      <text class="stat-label">待推送</text>
     </view>
   </view>
-</scroll-view>
+  
+  <view class="action-panel">
+    <button bindtap="handleCollectNews" type="primary">立即采集</button>
+    <button bindtap="handlePushNews" type="primary">立即推送</button>
+    <button bindtap="handleClearNews" type="warn">清除全部</button>
+  </view>
+  
+  <view class="news-list">
+    <view class="panel-title">最近采集</view>
+    <view wx:if="{{loading}}" class="loading">加载中...</view>
+    <view wx:elif="{{newsList.length === 0}}" class="empty-list">暂无数据</view>
+    <view wx:else>
+      <view class="news-item" wx:for="{{newsList}}" wx:key="id" bindtap="viewNewsDetail" data-index="{{index}}">
+        <text class="news-title">{{item.title}}</text>
+        <view class="news-content">{{item.content}}</view>
+        <view class="news-meta">
+          <text class="news-source">来源: {{item.source}}</text>
+          <text class="news-time">{{item.time}}</text>
+        </view>
+        <view class="news-status">
+          <text class="status-tag {{item.isPushed ? 'pushed' : 'pending'}}">
+            {{item.isPushed ? '已推送' : '待推送'}}
+          </text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

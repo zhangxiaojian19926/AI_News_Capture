@@ -1,0 +1,25 @@
+<view class="container">
+  <view wx:if="{{news}}" class="news-detail">
+    <view class="news-header">
+      <text class="news-title">{{news.title}}</text>
+      <view class="news-meta">
+        <text class="news-source">来源: {{news.source}}</text>
+        <text class="news-time">{{news.time}}</text>
+      </view>
+    </view>
+    
+    <scroll-view scroll-y="true" class="news-content-container">
+      <rich-text nodes="{{formattedContent}}" space="nbsp" class="news-content"></rich-text>
+    </scroll-view>
+    
+    <view class="action-buttons">
+      <button class="action-btn" bindtap="copyLink">复制链接</button>
+      <button class="action-btn" bindtap="goBack">返回</button>
+    </view>
+  </view>
+  
+  <view wx:else class="error-message">
+    <text>无法加载新闻详情</text>
+    <button bindtap="goBack">返回</button>
+  </view>
+</view>

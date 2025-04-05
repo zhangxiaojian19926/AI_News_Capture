@@ -1,0 +1,66 @@
+<view class="container">
+  <view class="header">
+    <text class="title">设置</text>
+  </view>
+  
+  <view wx:if="{{loading}}" class="loading">加载中...</view>
+  <view wx:else>
+    <view class="section">
+      <view class="section-title">定时任务</view>
+      
+      <view class="setting-item">
+        <view class="setting-label">自动采集</view>
+        <switch checked="{{scheduleSettings.autoCollect}}" bindchange="toggleAutoCollect" color="#07C160" />
+      </view>
+      
+      <view class="setting-item" wx:if="{{scheduleSettings.autoCollect}}">
+        <view class="setting-label">采集时间</view>
+        <picker mode="time" value="{{scheduleSettings.collectTime}}" bindchange="setCollectTime">
+          <view class="picker-value">{{scheduleSettings.collectTime}}</view>
+        </picker>
+      </view>
+      
+      <view class="setting-item">
+        <view class="setting-label">自动推送</view>
+        <switch checked="{{scheduleSettings.autoPush}}" bindchange="toggleAutoPush" color="#07C160" />
+      </view>
+      
+      <view class="setting-item" wx:if="{{scheduleSettings.autoPush}}">
+        <view class="setting-label">推送时间</view>
+        <picker mode="time" value="{{scheduleSettings.pushTime}}" bindchange="setPushTime">
+          <view class="picker-value">{{scheduleSettings.pushTime}}</view>
+        </picker>
+      </view>
+    </view>
+    
+    <view class="section">
+      <view class="section-title">微信公众号设置</view>
+      
+      <view class="input-item">
+        <view class="input-label">AppID</view>
+        <input class="input" value="{{wechatSettings.appId}}" bindinput="inputAppId" placeholder="请输入公众号AppID" />
+      </view>
+      
+      <view class="input-item">
+        <view class="input-label">AppSecret</view>
+        <input class="input" value="{{wechatSettings.appSecret}}" bindinput="inputAppSecret" placeholder="请输入公众号AppSecret" password="true" />
+      </view>
+      
+      <view class="input-item">
+        <view class="input-label">模板ID</view>
+        <input class="input" value="{{wechatSettings.templateId}}" bindinput="inputTemplateId" placeholder="请输入消息模板ID" />
+      </view>
+      
+      <button class="save-btn" bindtap="saveWechatSettings">保存设置</button>
+    </view>
+    
+    <view class="section">
+      <view class="section-title">数据源设置</view>
+      
+      <view class="setting-item" bindtap="navigateToRSS">
+        <view class="setting-label">RSS订阅源管理</view>
+        <view class="setting-arrow">></view>
+      </view>
+    </view>
+  </view>
+</view>
