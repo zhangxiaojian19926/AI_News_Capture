@@ -21,10 +21,11 @@ function getStats() {
     const newsList = allNews.slice(0, 20).map(news => ({
       id: news.id,
       title: news.title,
-      content: util.truncateText(news.content, 30000), // 限制新闻字数
+      content: news.content, // 限制新闻字数
       source: news.source.name,
       time: util.formatTime(new Date(news.collectTime)),
-      isPushed: news.isPushed
+      isPushed: news.isPushed,
+      url:news.url
     }));
     
     resolve({
@@ -40,9 +41,22 @@ function getNewsFromStorage() {
   return wx.getStorageSync('all_news') || [];
 }
 
-// 保存新闻到存储
+// 在保存新闻到存储前清理内容
 function saveNewsToStorage(newsList) {
-  wx.setStorageSync('all_news', newsList);
+  // 清理每篇新闻的内容
+  const cleanedNewsList = newsList.map(news => {
+    if (news.content) {
+      news.content = news.content
+        .replace(/\]\]>/g, '')
+        .replace(/<!\[CDATA\[/g, '')
+        .replace(/&lt;!\[CDATA\[/g, '')
+        .replace(/\]\]&gt;/g, '')
+        .replace(/\s*\]\]>\s*$/, '');
+    }
+    return news;
+  });
+  
+  wx.setStorageSync('all_news', cleanedNewsList);
 }
 
 // 采集新闻
@@ -70,8 +84,6 @@ function collectNews() {
               articles: result.articles
             };
           }
-
-          console.log(result.articles);
 
           return null;
         })

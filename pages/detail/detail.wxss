@@ -1,5 +1,5 @@
 .container {
-  padding: 20rpx;
+  padding: 0;
   background-color: #f6f6f6;
   min-height: 100vh;
   display: flex;
@@ -9,90 +9,198 @@
 
 .news-detail {
   background: #fff;
-  border-radius: 12rpx;
-  padding: 30rpx;
-  box-shadow: 0 2rpx 12rpx rgba(0,0,0,0.08);
+  border-radius: 0;
+  padding: 40rpx 30rpx;
+  box-shadow: 0 2rpx 12rpx rgba(0,0,0,0.05);
   flex: 1;
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
-  height: calc(100vh - 40rpx);
+  height: calc(100vh - 0rpx);
 }
 
 .news-header {
-  margin-bottom: 30rpx;
+  margin-bottom: 40rpx;
   border-bottom: 1rpx solid #f0f0f0;
-  padding-bottom: 20rpx;
+  padding-bottom: 30rpx;
 }
 
 .news-title {
-  font-size: 36rpx;
+  font-size: 40rpx;
   font-weight: bold;
   color: #333;
   display: block;
-  margin-bottom: 20rpx;
-  text-align: center;
-  line-height: 1.4;
+  margin-bottom: 30rpx;
+  text-align: left;
+  line-height: 1.5;
+  letter-spacing: 1rpx;
 }
 
 .news-meta {
   display: flex;
   justify-content: space-between;
-  font-size: 24rpx;
+  font-size: 26rpx;
   color: #999;
 }
 
-.news-content-container {
-  flex: 1;
-  height: 0;
-  overflow-y: auto;
-  box-sizing: border-box;
+/* 列表样式优化 */
+/* 列表样式优化 */
+.news-content ul {
+  list-style: none !important;
+  padding-left: 20rpx !important;
+  margin: 30rpx 0 !important;
 }
 
-.news-content {
-  font-size: 30rpx;
-  color: #333;
-  line-height: 1.8;
-  letter-spacing: 1rpx;
-  padding-bottom: 30rpx;
+.news-content ol {
+  padding-left: 40rpx !important;
+  margin: 30rpx 0 !important;
 }
 
-/* 确保图片能够正确显示 */
-.news-content image {
-  max-width: 100% !important;
-  height: auto !important;
-  display: block !important;
-  margin: 20rpx auto !important;
-  border-radius: 8rpx !important;
-  box-shadow: 0 2rpx 8rpx rgba(0,0,0,0.1) !important;
+.news-content li {
+  margin-bottom: 24rpx !important;
+  position: relative !important;
+  line-height: 1.6 !important;
+  padding-left: 30rpx !important;
 }
 
-/* 段落样式 */
-.news-content p {
-  margin-bottom: 16rpx !important;
+/* 自定义列表项样式 - 不再需要伪元素 */
+.news-content ul li {
+  text-indent: 0 !important;
 }
 
-/* 链接样式 */
+/* 链接样式优化 */
 .news-content a {
+  color: #0366d6 !important;
+  text-decoration: none !important;
+  border-bottom: 1px solid #0366d6 !important;
+  padding-bottom: 2rpx !important;
+}
+
+/* 学术论文特殊样式 */
+.paper-title {
+  font-size: 36rpx !important;
+  font-weight: bold !important;
+  color: #333 !important;
+  margin: 30rpx 0 20rpx 0 !important;
+}
+
+.paper-link {
+  margin: 20rpx 0 !important;
+}
+
+.paper-link-label {
+  font-weight: bold !important;
+}
+
+.research-points {
+  font-size: 34rpx !important;
+  font-weight: bold !important;
+  margin: 40rpx 0 20rpx 0 !important;
   color: #07C160 !important;
-  text-decoration: underline !important;
+}
+
+/* 标题样式 */
+.news-content h4, .news-content h5, .news-content h6 {
+  font-weight: bold !important;
+  margin: 40rpx 0 24rpx 0 !important;
+  color: #222 !important;
+  letter-spacing: 1rpx !important;
+}
+
+/* 标题样式优化 */
+.news-content h1, .news-content h2, .news-content h3 {
+  font-weight: bold !important;
+  color: #222 !important;
+  margin: 30rpx 0 20rpx 0 !important;
+  padding-bottom: 10rpx !important;
+  border-bottom: 1px solid #eee !important;
+}
+
+/* 段落样式优化 - 添加首行缩进 */
+.news-content p {
+  margin-bottom: 30rpx !important;
+  line-height: 2.0 !important;
+  text-align: left !important;
+  color: #333 !important;
+  padding: 0 !important;
+  font-size: 30rpx !important;
+  letter-spacing: 1rpx !important;
+  text-indent: 2em !important; /* 添加首行缩进，2em相当于2个字符的宽度 */
+}
+
+/* 特殊段落样式 - 如"在...方面"的小标题 */
+.news-content .section-title {
+  margin-top: 40rpx !important;
+  margin-bottom: 20rpx !important;
+  font-weight: bold !important;
+  color: #222 !important;
+}
+
+/* 图片说明文字样式 */
+.news-content .image-caption {
+  font-size: 26rpx !important;
+  color: #666 !important;
+  text-align: center !important;
+  margin-top: 10rpx !important;
+  margin-bottom: 30rpx !important;
+}
+
+.news-content h1 { font-size: 40rpx !important; }
+.news-content h2 { font-size: 38rpx !important; }
+.news-content h3 { font-size: 36rpx !important; }
+.news-content h4 { font-size: 34rpx !important; }
+.news-content h5 { font-size: 32rpx !important; }
+.news-content h6 { font-size: 30rpx !important; }
+
+/* 列表样式 */
+.news-content ul, .news-content ol {
+  padding-left: 2em !important;
+  margin: 24rpx 0 !important;
+}
+
+.news-content li {
+  margin-bottom: 12rpx !important;
+}
+
+/* 引用块样式 */
+.news-content blockquote {
+  background: #f9f9f9 !important;
+  border-left: 4px solid #07C160 !important;
+  padding: 15rpx 20rpx !important;
+  margin: 20rpx 0 !important;
+  color: #555 !important;
+}
+
+/* 重要内容强调 */
+.news-content .highlight {
+  background-color: #fffde7 !important;
+  padding: 2rpx 6rpx !important;
+  border-radius: 4rpx !important;
 }
 
 .action-buttons {
   display: flex;
   justify-content: space-between;
-  margin-top: 30rpx;
+  margin-top: 40rpx;
   border-top: 1rpx solid #f0f0f0;
-  padding-top: 20rpx;
+  padding-top: 30rpx;
 }
 
 .action-btn {
   width: 45%;
   font-size: 28rpx;
+  background-color: #07C160;
+  color: #fff;
+  border: none;
+  border-radius: 8rpx;
+  padding: 16rpx 0;
+  line-height: 1.5;
+}
+
+.action-btn:last-child {
   background-color: #f8f8f8;
   color: #333;
   border: 1rpx solid #ddd;
-  border-radius: 8rpx;
 }
 
 .error-message {
