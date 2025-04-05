@@ -8,7 +8,7 @@
       </view>
     </view>
     
-    <scroll-view scroll-y="true" class="news-content-container">
+    <scroll-view scroll-y="true" class="news-content-container" enhanced="true" show-scrollbar="false">
       <rich-text nodes="{{formattedContent}}" space="nbsp" class="news-content"></rich-text>
     </scroll-view>
     
