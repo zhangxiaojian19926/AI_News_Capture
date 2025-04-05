@@ -1,0 +1,56 @@
+<view class="container">
+  <view class="header">
+    <text class="title">RSS订阅源管理</text>
+  </view>
+  
+  <view class="add-section">
+    <view class="input-group">
+      <input class="url-input" value="{{newSourceUrl}}" bindinput="inputSourceUrl" placeholder="请输入RSS源URL" />
+      <button class="add-btn" bindtap="addRSSSource">添加</button>
+    </view>
+  </view>
+  
+  <view class="sources-list">
+    <view class="section-title">已添加的RSS源</view>
+    <view wx:if="{{loading}}" class="loading">加载中...</view>
+    <view wx:elif="{{rssSources.length === 0}}" class="empty-list">暂无RSS源，请添加</view>
+    <view wx:else>
+      <view class="source-item" wx:for="{{rssSources}}" wx:key="id">
+        <view class="source-info">
+          <text class="source-name">{{item.name}}</text>
+          <text class="source-url">{{item.url}}</text>
+        </view>
+        <view class="source-actions">
+          <switch checked="{{item.enabled}}" bindchange="toggleSourceEnabled" data-index="{{index}}" color="#07C160" />
+          <view class="delete-btn" bindtap="deleteSource" data-index="{{index}}">删除</view>
+        </view>
+      </view>
+    </view>
+  </view>
+  
+  <view class="default-sources">
+    <view class="section-title">推荐RSS源</view>
+    <view class="default-source-list">
+      <view class="default-source-item">
+        <text class="default-source-name">机器之心</text>
+        <text class="default-source-url">https://www.jiqizhixin.com/rss</text>
+        <button class="copy-btn" bindtap="copyText" data-text="https://www.jiqizhixin.com/rss">复制</button>
+      </view>
+      <view class="default-source-item">
+        <text class="default-source-name">MIT Technology Review</text>
+        <text class="default-source-url">https://www.technologyreview.com/topic/artificial-intelligence/feed</text>
+        <button class="copy-btn" bindtap="copyText" data-text="https://www.technologyreview.com/topic/artificial-intelligence/feed">复制</button>
+      </view>
+      <view class="default-source-item">
+        <text class="default-source-name">VentureBeat</text>
+        <text class="default-source-url">https://venturebeat.com/category/ai/feed/</text>
+        <button class="copy-btn" bindtap="copyText" data-text="https://venturebeat.com/category/ai/feed/">复制</button>
+      </view>
+      <view class="default-source-item">
+        <text class="default-source-name">AI News</text>
+        <text class="default-source-url">https://artificialintelligence-news.com/feed/</text>
+        <button class="copy-btn" bindtap="copyText" data-text="https://artificialintelligence-news.com/feed/">复制</button>
+      </view>
+    </view>
+  </view>
+</view>
