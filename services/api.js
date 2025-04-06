@@ -100,7 +100,7 @@ function fetchRSSNews(sourceUrl) {
       method: 'GET',
       data: {
         rss_url: sourceUrl,
-        api_key: 'euy8rkrdkc6ia50t6klnwedeif1vfmzces3knhjo', // 可选，免费版有使用限制
+        api_key: 'API_KEY', // 可选，免费版有使用限制
         count: 20
       },
       success: res => {

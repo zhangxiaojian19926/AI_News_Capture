@@ -159,7 +159,7 @@ function pushNews() {
     const wechatSettings = getWechatSettings();
     const { appId, appSecret, templateId } = wechatSettings;
     
-    if (!appId || !appSecret || !templateId) {
+    if (!appId || !appSecret) {
       resolve({ success: false, message: '微信公众号设置不完整' });
       return;
     }
@@ -216,14 +216,14 @@ function pushNews() {
             };
             
             // 发送给所有关注用户
-            const openids = followers.data.openid;
-            const sendPromises = openids.map(openid => 
-              api.sendTemplateMessage(accessToken, openid, templateId, templateData)
-                .catch(error => {
-                  console.error(`向用户${openid}发送消息失败:`, error);
-                  return null;
-                })
-            );
+            // const openids = followers.data.openid;
+            // const sendPromises = openids.map(openid => 
+            //   api.sendTemplateMessage(accessToken, openid, templateId, templateData)
+            //     .catch(error => {
+            //       console.error(`向用户${openid}发送消息失败:`, error);
+            //       return null;
+            //     })
+            // );
             
             return Promise.all(sendPromises)
               .then(results => {

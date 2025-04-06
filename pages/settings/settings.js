@@ -94,7 +94,7 @@ Page({
   saveWechatSettings: function() {
     const { appId, appSecret, templateId } = this.data.wechatSettings;
     
-    if (!appId || !appSecret || !templateId) {
+    if (!appId || !appSecret) {
       util.showError('请填写完整信息');
       return;
     }
